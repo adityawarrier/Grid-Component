@@ -8,15 +8,18 @@ function App() {
   return (
     <div style={{ margin: 16, position: "relative" }}>
       <GridRuler spacing={SPACING} />
-      <Grid container spacing={SPACING}>
-        <Grid item cols={12}>
+      <Grid container spacing={SPACING} justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
+        <Grid item xs={12} sm={6} md={4} lg={1}>
           <Box>1</Box>
         </Grid>
-        <Grid item cols={6}>
+        <Grid item xs={12} sm={6} md={4} lg={1}>
           <Box>2</Box>
         </Grid>
-        <Grid item cols={6}>
+        <Grid item xs={12} sm={6} md={4} lg={1}>
           <Box>3</Box>
+        </Grid>
+        <Grid item xs={12} sm={6} md={4} lg={1}>
+          <Box>4</Box>
         </Grid>
       </Grid>
     </div>

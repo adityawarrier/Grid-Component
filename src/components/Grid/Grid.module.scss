@@ -1,8 +1,25 @@
 $spacing: (
-  "sm": 8px,
-  "md": 16px,
-  "lg": 24px,
+  sm: 8px,
+  md: 16px,
+  lg: 24px,
 );
+
+$breakpoints: (
+  xs: 0px,
+  sm: 600px,
+  md: 960px,
+  lg: 1280px,
+);
+
+$align-items: (center, flex-start, flex-end);
+
+$justify-content: (center, flex-start, flex-end, space-between);
+
+@mixin breakpoint($breakpoint) {
+  @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+    @content;
+  }
+}
 
 .Grid {
   &__container {
@@ -14,19 +31,40 @@ $spacing: (
     display: block;
   }
 
-  @for $i from 1 to 13 {
-    &__cols_#{$i} {
-      flex-basis: $i / 12 * 100%;
-    }
-  }
-
+  // Defines the spacing on the container, i.e, the spacing around the blocks
   @each $key, $value in $spacing {
     &__spacing_#{$key} {
       margin: -$value;
     }
-    
+
     &__spacing_#{$key} > &__item {
       padding: $value;
+    }
+  }
+
+  // Defines the responsiveness of the grid
+  @each $name, $value in $breakpoints {
+    @include breakpoint($name) {
+      // Defines the size of each block
+      @for $i from 1 to 13 {
+        &__#{$name}_#{$i} {
+          flex-basis: $i / 12 * 100%;
+        }
+      }
+    }
+  }
+
+  // Defines the align-items property on the grid contianer
+  @each $value in $align-items {
+    &__align-items_#{$value} {
+      align-items: $value;
+    }
+  }
+
+  // Defines the justify-content property on the grid contianer
+  @each $value in $justify-content {
+    &__justify-content_#{$value} {
+      justify-content: $value;
     }
   }
 }
