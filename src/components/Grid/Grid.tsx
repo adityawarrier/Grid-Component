@@ -7,7 +7,7 @@ type Spacing = "sm" | "md" | "lg";
 type JustifyContent = "center" | "space-between" | "flex-start" | "flex-end";
 type AlignItems = "center" | "flex-start" | "flex-end";
 
-interface IProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface IGridProps extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode;
   
   container?: boolean;
@@ -25,14 +25,14 @@ interface IProps extends React.HTMLAttributes<HTMLDivElement> {
   lg?: Cols;
 }
 
-export const Grid = (props: IProps): React.ReactElement => {
+export const Grid = (props: IGridProps): React.ReactElement => {
   const {
     children,
     container = false,
     item = false,
     
     justifyContent = "flex-start",
-    alignItems = "center",
+    alignItems = "flex-start",
     
     spacing,
     
